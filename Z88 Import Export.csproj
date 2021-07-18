@@ -78,10 +78,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\page_white_go.png" />
-    <None Include="Resources\cancel.png" />
-    <None Include="Resources\save.gif" />
-    <None Include="Resources\disk.png" />
     <Content Include="z88-import-export.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
