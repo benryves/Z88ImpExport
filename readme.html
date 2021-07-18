@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Z88 Import/Export</title>
+		<style type="text/css">
+		body {
+			max-width: 40em;
+			padding: 0 6em;
+		}
+		h1, h2 {
+			margin-left: -1.5em;
+		}
+		h2 {
+			margin-top: 2em;
+		}
+		tt {
+			background: #eee;
+			border: 1px solid #ccc;
+			padding: 0 0.25em;
+			border-radius: 0.25em;
+		}
+		tt + tt {
+			margin-left: 0.25em;
+		}
+		.button {
+			font-family: sans-serif;
+			font-size: 0.8em;
+			border: 1px solid black;
+			text-transform: uppercase;
+			padding: 0 0.3em;
+			border-radius: 0.25em;
+			margin: 0 0.1em;
+		}
+		table {
+			border-collapse: collapse;
+		}
+		table td, table th {
+			border: 1px solid #ccc;
+			border-left-color: black;
+			border-right-color: black;
+			padding: 0 0.5em;
+			text-align: center;
+		}
+		table thead th {
+			background-color: black;
+			color: white;
+			border-color: black;
+		}
+		table tbody tr:first-child th,
+		table tbody tr:first-child td {
+			border-top-color: black;
+		}
+		table tbody tr:last-child th,
+		table tbody tr:last-child td {
+			border-bottom-color: black;
+		}
+		table tbody tr:nth-child(even) {
+			background: #eee;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Z88 Import/Export</h1>
+		
+		<ul>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#serial_cable">Serial cable</a></li>
+			<li><a href="#pc_setup">Setting up the PC software</a></li>
+			<li><a href="#z88_setup">Setting up the Z88</a></li>
+			<li><a href="#sending_files">Sending files to the Z88</a></li>
+			<li><a href="#receiving_files">Receiving files from the Z88</a></li>
+			<li><a href="#slowness">Why is it so slow?</a></li>
+		</ul>
+		
+		<h2 id="introduction">Introduction</h2>
+		<p>This is a simple Windows program to transfer files to and from a Z88 computer over a serial connection.</p>
+		<p>It is reasonably unsophisticated but is designed to work with the Z88's built-in Imp-Export popdown so can be used with a Z88 that does not have any more sophisticated file transfer software installed on it.</p>
+		
+		<h2 id="serial_cable">Serial cable</h2>
+		<p>
+			You will need an appropriately-wired serial cable to connect the Z88 computer and your modern PC together.
+			In spite of the similarity of the Z88's DE-9 connector to a modern PC's DE-9 connector they are not compatible so do not connect them together with a simple straight-through cable.
+		</p>
+		<p>You can assemble your own serial cable by connecting the following pins together, using a male connector for the Z88 end (to plug into its female socket) and a female connector for the PC end (to plug into its male socket).</p>
+		
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2" style="width:40%;">Z88</th>
+					<th rowspan="2" style="width:10%;">&harr;</th>
+					<th colspan="2" style="width:40%;">PC</th>
+				</tr>
+				<tr>
+					<th colspan="2">DE-9M</th>
+					<th colspan="2">DE-9F</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>2</td><td>TxD</td><td>&rarr;</td><td>2</td><td>RxD</td></tr>
+				</tr>
+				<tr>
+					<td>3</td><td>RxD</td><td>&larr;</td><td>3</td><td>TxD</td></tr>
+				</tr>
+				<tr>
+					<td>4</td><td>RTS</td><td>&rarr;</td><td>8</td><td>CTS</td></tr>
+				</tr>
+				<tr>
+					<td>5</td><td>CTS</td><td>&larr;</td><td>7</td><td>RTS</td></tr>
+				</tr>
+				<tr>
+					<td>7</td><td>GND</td><td>&mdash;</td><td>5</td><td>GND</td></tr>
+				</tr>
+				<tr>
+					<td>8</td><td>DCD</td><td>&larr;</td><td>4</td><td>DTR</td></tr>
+				</tr>
+				<tr>
+					<td>9</td><td>DTR</td><td>&rarr;</td><td>1, 6</td><td>DCD, DSR</td></tr>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			I recommend buying a serial cable with a male connector on one end, cutting the other end off, then soldering on your own female connector in place of the one you cut off.
+			This is because most of the DE-9 connector shells you can buy to assemble your own cables with have plastic hooks to hold in the DE-9 connector and these will prevent the cable from being inserted snugly into the Z88's recessed port.
+			You should also remove the thumbscrews from the male Z88 connector end of the cable - this can normally be done by unscrewing them whilst pulling them back out of the shell.
+		</p>
+		
+		<h2 id="pc_setup">Setting up the PC software</h2>
+		<p>
+			The first time you run the software it will be stuck in an inactive state and will prompt you to choose the serial port.
+			You can do this by clicking Options&rarr;Serial&nbsp;Port and selecting your serial port from the list of names that appears.
+		</p>
+		<p>Please note that the software will try to open the serial port immediately and will keep it open as long as it is running so make sure to close any other programs that may be using the serial port first.</p>
+		<p>The selected serial port will be saved in your user settings.</p>
+		
+		<h2 id="z88_setup">Setting up the Z88</h2>
+		<p>The Z88 needs to be configured with the default communication settings. You can verify these in the Panel popdown (<span class="button">&square;S</span>):</p>
+		<ul>
+			<li>Transmit baud rate: 9600</li>
+			<li>Receive baud rate: 9600</li>
+			<li>Parity: None</li>
+			<li>Xon/Xoff: Yes</li>
+		</ul>
+		<p>You can also change the default device from this page (for example, if you want files to be sent to a RAM card in slot 1 by default then change the "default device" field to <tt>:RAM.1</tt>).
+		<p>To transfer files to and from the Z88 you need to be running the Imp-Export popdown (<span class="button">&square;X</span>). How you proceed from there depends on whether you want to transfer files to or from the device.</p>
+		
+		<h2 id="sending_files">Sending files to the Z88</h2>
+		<p>
+			To send a file to the Z88 you first need to make sure it is ready to receive files.
+			This is most easily handled by using the batch receive option inside Imp-Export.
+			Type <span class="button">B</span> then press <span class="button">Enter</span>.
+		</p>
+		<p>
+			On your PC, click File&rarr;Send&nbsp;Files then select the files you wish to send in the dialog box that appears.
+			These files will be sent one by one and you can monitor the progress both on the PC and the Z88.
+		</p>
+		<p>
+			If you prefer to save the files on the Z88 with a different name to the ones on the PC then you can use the receive file option.
+			Type Type <span class="button">R</span> then press <span class="button">Enter</span>.
+			When prompted, enter a file name, press <span class="button">Enter</span> and then send a single file from the PC.
+			If you press <span class="button">Enter</span> without entering a filename then it will use the name of the file on the PC automatically.
+		</p>
+		<p>
+			The files will usually be stored in the default device on the Z88.
+			You can change the default device on the Z88 via the Panel popdown (<span class="button">&square;S</span>).
+			You can also explicitly specify a device from the PC using the Options&rarr;Send&nbsp;to&nbsp;Device dropdown menu.
+		</p>
+		
+		<h2 id="receiving_files">Receiving files from the Z88</h2>
+		<p>You do not need to do anything on the PC to start receiving files from the Z88, it is constantly listening for batch transfers.</p>
+		<p>
+			To send a file from the Z88, use the send file feature in Imp-Export.
+			Type <span class="button">S</span> then press <span class="button">Enter</span>.
+			When prompted, enter a filename or a wildcard.
+			For example, to send all files in the current device/directory enter <tt>*</tt> as the filename.
+		</p>
+		<p>
+			The Z88 will start sending the file(s) and you can monitor the progress on the PC.
+			When a complete file has been received it appears in the list of received files along with its size.
+			You can then export these files by selecting at least one of them and clicking File&rarr;Save&nbsp;Selected&nbsp;Files&nbsp;As.
+			If one file is selected then a single file save dialog will be shown allowing you to choose the directory and name of the file.
+			If more than one file is selected then a directory browser is shown instead and the files will be exported into that directory.
+		</p>
+		
+		<h2 id="slowness">Why is it so slow?</h2>
+		<p>
+			Files are transferred pretty slowly.
+			If you're the sort of person to stare at progress bars during slow file transfers you might have noticed that the amount of data transferred in bytes is considerably higher than the size of the file which surely can't be helping matters.
+		</p>
+		<p>The overall baud rate is kept to 9600 as I found that the higher speeds of 19200 and 38400 were extremely unreliable.</p>
+		<p>
+			The protocol used to transfer binary data is extremely inefficient.
+			Data bytes in the range &amp;20&ndash;&amp;7E are transmitted directly but anything outside that range needs to be escaped and sent in the form <tt>ESC</tt><tt>'B'</tt><tt>x</tt><tt>x</tt> where <tt>x</tt><tt>x</tt> are two ASCII characters representing the byte in hexadecimal.
+			For example, <tt>&amp;A9</tt> is sent as <tt>ESC</tt><tt>'B'</tt><tt>'A'</tt><tt>'9'</tt>.
+		</p>
+		<p>
+			This method of escaping binary data inflates the data size enormously.
+			If you had a 256 byte file that contained a single instance of every possible byte value then 95 of those (&amp;20&ndash;&amp;7E) would be transmitted a single byte but the other 161 of them (&amp;00&ndash;&amp;1F and (&amp;7F&ndash;&amp;FF)) would consume four bytes each, resulting in a total transfer size of 95*1+161*4=739 and making the data nearly three times its original size.
+		</p>
+		
+		<h1><hr /></h1>
+		<p>Ben Ryves 2018 &mdash; <a href="http://benryves.com/">http://benryves.com/</a> &bull; <a href="mailto:benryves@benryves.com">benryves@benryves.com</a></p>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z88 Import Export", "Z88 Import Export.csproj", "{9B1115C9-2F8F-43E6-9454-B58FC7A4D2AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B1115C9-2F8F-43E6-9454-B58FC7A4D2AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B1115C9-2F8F-43E6-9454-B58FC7A4D2AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B1115C9-2F8F-43E6-9454-B58FC7A4D2AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B1115C9-2F8F-43E6-9454-B58FC7A4D2AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E60527E5-11FD-478A-A503-971E24639A2C}
+	EndGlobalSection
+EndGlobal
