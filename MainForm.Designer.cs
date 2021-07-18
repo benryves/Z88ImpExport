@@ -55,7 +55,9 @@
 			this.editInvertSelectionMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionsSerialPortMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.optionSendToDeviceMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.optionSendToDirectoryMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.optionSendToDirectoryText = new System.Windows.Forms.ToolStripTextBox();
 			this.statusStrip = new System.Windows.Forms.StatusStrip();
 			this.mainStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
 			this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -224,6 +226,7 @@
 			// 
 			this.optionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsSerialPortMenu,
+            this.optionSendToDeviceMenu,
             this.optionSendToDirectoryMenu});
 			this.optionsMenu.Name = "optionsMenu";
 			this.optionsMenu.Size = new System.Drawing.Size(61, 20);
@@ -233,14 +236,29 @@
 			// optionsSerialPortMenu
 			// 
 			this.optionsSerialPortMenu.Name = "optionsSerialPortMenu";
-			this.optionsSerialPortMenu.Size = new System.Drawing.Size(152, 22);
+			this.optionsSerialPortMenu.Size = new System.Drawing.Size(180, 22);
 			this.optionsSerialPortMenu.Text = "Serial &Port";
+			// 
+			// optionSendToDeviceMenu
+			// 
+			this.optionSendToDeviceMenu.Name = "optionSendToDeviceMenu";
+			this.optionSendToDeviceMenu.Size = new System.Drawing.Size(180, 22);
+			this.optionSendToDeviceMenu.Text = "Send to De&vice";
 			// 
 			// optionSendToDirectoryMenu
 			// 
+			this.optionSendToDirectoryMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionSendToDirectoryText});
 			this.optionSendToDirectoryMenu.Name = "optionSendToDirectoryMenu";
-			this.optionSendToDirectoryMenu.Size = new System.Drawing.Size(152, 22);
-			this.optionSendToDirectoryMenu.Text = "Send to &Device";
+			this.optionSendToDirectoryMenu.Size = new System.Drawing.Size(180, 22);
+			this.optionSendToDirectoryMenu.Text = "Send to &Directory";
+			// 
+			// optionSendToDirectoryText
+			// 
+			this.optionSendToDirectoryText.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.optionSendToDirectoryText.Name = "optionSendToDirectoryText";
+			this.optionSendToDirectoryText.Size = new System.Drawing.Size(200, 23);
+			this.optionSendToDirectoryText.TextChanged += new System.EventHandler(this.optionSendToDirectoryText_TextChanged);
 			// 
 			// statusStrip
 			// 
@@ -364,9 +382,11 @@
 		private System.Windows.Forms.ToolStripMenuItem fileClearSelectedFilesMenu;
 		private System.Windows.Forms.ToolStripMenuItem optionsMenu;
 		private System.Windows.Forms.ToolStripMenuItem optionsSerialPortMenu;
-		private System.Windows.Forms.ToolStripMenuItem optionSendToDirectoryMenu;
+		private System.Windows.Forms.ToolStripMenuItem optionSendToDeviceMenu;
 		private System.Windows.Forms.ToolStripMenuItem fileCancelMenu;
 		private System.Windows.Forms.ToolStripContainer toolContainer;
+		private System.Windows.Forms.ToolStripMenuItem optionSendToDirectoryMenu;
+		private System.Windows.Forms.ToolStripTextBox optionSendToDirectoryText;
 	}
 }
 

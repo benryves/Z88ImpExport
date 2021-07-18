@@ -22,6 +22,7 @@ namespace Z88ImportExport {
 			ClearStatusBar();
 		}
 
+		private string SendToDevice = "";
 		private string SendToDirectory = "";
 
 		private void OpenSerialPort() {
@@ -172,6 +173,8 @@ namespace Z88ImportExport {
 						var file = Z88File.FromFile(filename);
 						var directory = SendToDirectory;
 						if (!string.IsNullOrEmpty(directory)) file.Name = directory + "/" + file.Name;
+						var device = SendToDevice;
+						if (!string.IsNullOrEmpty(device)) file.Name = device + "/" + file.Name;
 						this.protocol.SendFile(file, filenames.Length > 1 && i < filenames.Length - 1);
 					} catch (Exception ex) {
 						switch (MessageBox.Show(this, string.Format(@"There was an error sending the file ""{0}"": {1}", filename, ex.Message), Application.ProductName, MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error)) {
@@ -262,9 +265,9 @@ namespace Z88ImportExport {
 			}
 
 
-			var sendToDirectory = SendToDirectory;
+			var sendToDevice = SendToDevice;
 
-			optionSendToDirectoryMenu.DropDownItems.Clear();
+			optionSendToDeviceMenu.DropDownItems.Clear();
 
 			var directories = new List<string>();
 			directories.Add("");
@@ -272,16 +275,18 @@ namespace Z88ImportExport {
 				directories.Add(string.Format(":RAM.{0}", i));
 			}
 
-			foreach (var directory in directories) {
+			foreach (var device in directories) {
 				var item = new ToolStripMenuItem {
-					Text = string.IsNullOrEmpty(directory) ? "(Default)" : directory,
-					Tag = directory,
-					Checked = sendToDirectory == directory,
+					Text = string.IsNullOrEmpty(device) ? "(Default)" : device,
+					Tag = device,
+					Checked = sendToDevice == device,
 					Enabled = this.protocol.IsReady,
 				};
-				item.Click += optionsSendToDirectoryDropDownItem_Click;
-				optionSendToDirectoryMenu.DropDownItems.Add(item);
+				item.Click += optionsSendToDeviceDropDownItem_Click;
+				optionSendToDeviceMenu.DropDownItems.Add(item);
 			}
+
+			this.optionSendToDirectoryText.Text = SendToDirectory;
 		}
 
 		private void optionsSerialPortMenuDropDownItem_Click(object sender, EventArgs e) {
@@ -296,11 +301,11 @@ namespace Z88ImportExport {
 			}
 		}
 
-		private void optionsSendToDirectoryDropDownItem_Click(object sender, EventArgs e) {
+		private void optionsSendToDeviceDropDownItem_Click(object sender, EventArgs e) {
 			if (this.ConfirmPortIsReady()) {
 				if (sender is ToolStripMenuItem item) {
 					var newDirectory = item.Tag as string;
-					SendToDirectory = newDirectory;
+					SendToDevice = newDirectory;
 				}
 			}
 		}
@@ -362,6 +367,8 @@ namespace Z88ImportExport {
 			}
 		}
 
-		
+		private void optionSendToDirectoryText_TextChanged(object sender, EventArgs e) {
+			this.SendToDirectory = optionSendToDirectoryText.Text;
+		}
 	}
 }
