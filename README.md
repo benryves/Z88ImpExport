@@ -5,7 +5,8 @@
 This is a simple Windows program to transfer files to and from a Z88 computer over a serial connection.
 
 It is reasonably unsophisticated but is designed to work with the Z88's built-in Imp-Export popdown so can be used with a Z88 that does not have any more sophisticated file transfer software installed on it.
-Serial cable
+
+## Serial cable
 
 You will need an appropriately-wired serial cable to connect the Z88 computer and your modern PC together. In spite of the similarity of the Z88's DE-9 connector to a modern PC's DE-9 connector they are not compatible so do not connect them together with a simple straight-through cable.
 
