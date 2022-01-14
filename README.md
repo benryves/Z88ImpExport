@@ -23,7 +23,8 @@ You can assemble your own serial cable by connecting the following pins together
 |9 DTR|→|1, 6 DCD, DSR|
 
 I recommend buying a serial cable with a male connector on one end, cutting the other end off, then soldering on your own female connector in place of the one you cut off. This is because most of the DE-9 connector shells you can buy to assemble your own cables with have plastic hooks to hold in the DE-9 connector and these will prevent the cable from being inserted snugly into the Z88's recessed port. You should also remove the thumbscrews from the male Z88 connector end of the cable - this can normally be done by unscrewing them whilst pulling them back out of the shell.
-Setting up the PC software
+
+## Setting up the PC software
 
 The first time you run the software it will be stuck in an inactive state and will prompt you to choose the serial port. You can do this by clicking Options→Serial Port and selecting your serial port from the list of names that appears.
 
